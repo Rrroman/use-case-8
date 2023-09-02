@@ -1,0 +1,20 @@
+label {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  margin: 1rem 0;
+
+  & :where(input, textarea) {
+    min-width: 50%;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  & .error {
+    color: tomato;
+    padding-left: 1rem;
+  }
+}
