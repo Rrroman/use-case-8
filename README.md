@@ -1,6 +1,6 @@
 # This is a Message App.
 
-This is a simple-to-use message application. You can add a message record. To do this event valid First name, Second name, email, and message that have at least 20 characters.
+This is a simple-to-use message application. You can add a message record. To do this enter a valid First name, Second name, email, and message that has at least 20 characters.
 You can find messages in the table.
 
 Have fun!
