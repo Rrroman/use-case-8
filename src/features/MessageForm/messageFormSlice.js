@@ -11,7 +11,11 @@ export const messageFormSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action) => {
-      state.messages.push({ id: (previousId += 1), ...action.payload });
+      previousId = previousId + 1;
+      state.messages.push({
+        id: previousId,
+        ...action.payload,
+      });
       alert(`You have added message: ${action.payload.message}`);
     },
   },
