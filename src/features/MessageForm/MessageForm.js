@@ -5,8 +5,8 @@ import { addMessage } from './messageFormSlice';
 import classes from './messageForm.module.css';
 import isEmail from 'validator/es/lib/isEmail';
 
-const MIN_FIRST_NAME_LENGTH = 3;
-const MIN_SECOND_NAME_LENGTH = 3;
+const MIN_FIRST_NAME_LENGTH = 2;
+const MIN_SECOND_NAME_LENGTH = 2;
 const MIN_MESSAGE_LENGTH = 20;
 
 export default function MessageForm() {
@@ -19,6 +19,9 @@ export default function MessageForm() {
   const [secondNameError, setSecondNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [messageError, setMessageError] = useState(false);
+
+  const isSaveDisabled =
+    firstNameError || secondNameError || emailError || messageError;
 
   const dispatch = useDispatch();
 
@@ -74,7 +77,7 @@ export default function MessageForm() {
         <Label
           text="First name:"
           isError={firstNameError}
-          errorMessage={'Name should have more than 3 characters.'}
+          errorMessage={`Name should have more than ${MIN_FIRST_NAME_LENGTH} characters.`}
         >
           <input
             type="text"
@@ -89,7 +92,7 @@ export default function MessageForm() {
         <Label
           text="Second name:"
           isError={secondNameError}
-          errorMessage={'Second name should have more than 3 characters.'}
+          errorMessage={`Second name should have more than ${MIN_SECOND_NAME_LENGTH} characters.`}
         >
           <input
             type="text"
@@ -119,7 +122,7 @@ export default function MessageForm() {
         <Label
           text="Message:"
           isError={messageError}
-          errorMessage={'Message should have at least 20 characters'}
+          errorMessage={`Message should have at least ${MIN_MESSAGE_LENGTH} characters`}
         >
           <textarea
             type="text"
@@ -132,7 +135,11 @@ export default function MessageForm() {
           />
         </Label>
       </fieldset>
-      <button className={classes.button} type="submit">
+      <button
+        className={classes.button}
+        disabled={isSaveDisabled}
+        type="submit"
+      >
         Save
       </button>
     </form>

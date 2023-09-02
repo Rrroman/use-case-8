@@ -5,10 +5,15 @@ fieldset {
 
 .button {
   display: block;
-  margin: 1rem 0 0 auto;
+  margin: 1rem 0 1rem auto;
   background-color: rgb(252, 215, 120);
   border: 3px solid rgb(91, 91, 248);
   color: #010167;
   font-size: 16px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: antiquewhite;
+    cursor: not-allowed;
+  }
 }
