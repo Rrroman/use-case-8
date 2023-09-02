@@ -3,10 +3,10 @@ import Label from '../../components/UI/Label/Label';
 import { useDispatch } from 'react-redux';
 import { addMessage } from './messageFormSlice';
 import classes from './messageForm.module.css';
-import isEmail from 'validator/es/lib/isEmail';
+import validator from 'validator';
 
-const MIN_FIRST_NAME_LENGTH = 2;
-const MIN_SECOND_NAME_LENGTH = 2;
+const MIN_FIRST_NAME_LENGTH = 3;
+const MIN_SECOND_NAME_LENGTH = 3;
 const MIN_MESSAGE_LENGTH = 20;
 
 export default function MessageForm() {
@@ -38,7 +38,7 @@ export default function MessageForm() {
   function isFormValid() {
     const isFirstNameValid = isTextValid(firstName, MIN_FIRST_NAME_LENGTH);
     const isSecondNameValid = isTextValid(secondName, MIN_SECOND_NAME_LENGTH);
-    const isEmailValid = isEmail(email);
+    const isEmailValid = validator.isEmail(email);
     const isMessageValid = isTextValid(message, MIN_MESSAGE_LENGTH);
 
     if (
@@ -67,7 +67,7 @@ export default function MessageForm() {
   }
 
   function isTextValid(text, minCharacters) {
-    return text.trim().length > minCharacters;
+    return text.trim().length >= minCharacters;
   }
 
   return (
@@ -107,7 +107,7 @@ export default function MessageForm() {
         <Label
           text="Email:"
           isError={emailError}
-          errorMessage={'Please recheck your email'}
+          errorMessage={'Please recheck your email.'}
         >
           <input
             type="text"
@@ -122,7 +122,7 @@ export default function MessageForm() {
         <Label
           text="Message:"
           isError={messageError}
-          errorMessage={`Message should have at least ${MIN_MESSAGE_LENGTH} characters`}
+          errorMessage={`Message should have at least ${MIN_MESSAGE_LENGTH} characters.`}
         >
           <textarea
             type="text"
